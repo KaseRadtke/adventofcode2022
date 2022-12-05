@@ -1,14 +1,12 @@
 //Import File System Node module for reading of file
 const fs = require('fs');
 
-
 let inputFile = "input.txt"
 let game = {
     DRAW: {value: 'Y', score: 3},
     WIN: {value: 'Z', score: 6},
     LOSE:{value: 'X', score: 0}
 }
-
 let map = new Map();
 map.set('rock', { value: 'rock', keys:['A','X'], score : 1, beats: 'scissor'})
 map.set('paper', { value: 'paper', keys: ['B','Y'], score: 2, beats: 'rock'})
@@ -32,7 +30,6 @@ fs.readFile(inputFile, (err, input) =>{
         let gameOutcome = getGameOutcome(convertGame(gameRound))
         score += getScore(gameOutcome)
     }
-
     console.log('total score:' + score)
 })
 
