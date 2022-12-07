@@ -25,24 +25,19 @@ fs.readFile(inputFile, (err, input) => {
 })
 
 function getMarker(input, markerLength){
-    let firstFound = {}
     let firstFoundIndex = 0;
     for(let i = 0; i <= input.length - markerLength - 1; i++){
-        let charMap = {};
+        let chars = new Set([])
         for(let x = 0; x <= markerLength - 1; x++)
-        if(charMap[input[i + x]]){
-            charMap[input[i + x]]++
-        } else {
-            charMap[input[i + x]] = 1
+        if(!chars.has(input[i+x])){
+            chars.add(input[i+x])
         }
 
-        if(Object.keys(charMap).length === (markerLength)){
-            if(Object.keys(firstFound).length === 0){
-                firstFound = charMap
+        if(chars.size === (markerLength)){
+            if(firstFoundIndex === 0){
                 firstFoundIndex = i + (markerLength)
             }
         }
     }
-    console.log(firstFound)
     console.log('First match found at index:' + firstFoundIndex)
 }
